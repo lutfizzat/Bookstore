@@ -1,0 +1,14 @@
+before you can run the code, you need to pip install a few things.
+
+open the src file on the command prompt and do the following:
+
+1.pip install Pillow
+2.pip install django-crispy-forums
+3.pip install requirements -r requirements.txt
+
+and then in the same command prompt after installation is done, type:
+
+python manage.py runserver
+
+after the server has run, copy the https/ and paste it on the browser
+

@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+    body{
+	background-color: hsl(0, 0%, 98%);
+    }
+
+    h1,h2,h3,h4,h5,h6{
+        color:hsl(0, 0%, 30%);
+    }
+
+    .box-element{
+        box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 10px;
+    }
+
+    .thumbnail{
+        width: 100%;
+        height: 200px;
+        -webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+        -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+        box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    }
+
+    .product{
+        border-radius: 0 0 4px 4px;
+    }
+
+    .bg-dark{
+        background-color: #4f868c!important;
+    }
+
+    #cart-icon{
+        width:50px;
+        display: inline-block;
+        margin-left: 80px;
+        position: relative;
+    }
+
+    #cart-total{
+        display: block;
+        text-align: center;
+        color:#fff;
+        background-color: red;
+        width: 20px;
+        height: 25px;
+        border-radius: 50%;
+        font-size: 14px;
+    }
+
+    .col-lg-4, .col-lg-6, .col-lg-8, .col-lg-12{
+        margin-top: 10px;
+    }
+
+    .btn{
+        border-radius: 0;
+    }
+
+    .row-image{
+        width: 100px;
+    }
+
+    .form-field{
+        width:250px;
+        display: inline-block;
+        padding: 5px;
+    }
+
+    .cart-row{
+        display: flex;
+        align-items: flex-stretch;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ececec;
+
+    }
+
+    .quantity{
+        display: inline-block;
+        font-weight: 700;
+        padding-right:10px;
+        
+
+    }
+
+    .chg-quantity{
+        width: 12px;
+        cursor: pointer;
+        display: block;
+        margin-top: 5px;
+        transition:.1s;
+    }
+
+    .chg-quantity:hover{
+        opacity: .6;
+    }
+
+
+    .hidden{
+        display: none!important;
+    }
+
+    .container{
+        display: flex;
+    }
+
+    .flex{
+        display: flex;
+        flex-direction: row;
+    }
+    
+</style>
+
+<main>
+    <section class="mb-4">
+        {% if order.items.all %}
+
+        <h1>Order Summary</h1>
+        <div class="row">
+            <div class="col-lg-12">
+                
+                    <div class="cart-row" style="text-align: center;">
+                        <div style="flex:1"><strong>No.</strong></div>
+                        <div style="flex:2"><strong>Item</strong></div>
+                        <div style="flex:2"><strong>Item Title</strong></div>
+                        <div style="flex:1"><strong>Price</strong></div>
+                        <div style="flex:1"><strong>Quantity</strong></div>
+                        <div style="flex:1"><strong>Total Price</strong></div>
+                        <div style="flex:1"></div>
+                        
+    
+    
+                    </div>
+    
+                    
+                    {% for order_item in order.items.all %}
+                    <div class="cart-row" style="text-align: center;">
+                        <div style="flex:1">---</div>
+                        <div style="flex:2"><img class="row=image" src="{{order_item.item.imageURL}}"></div>
+                        <div style="flex:2">{{order_item.item.title}}</div>
+                        <div style="flex:1">${{order_item.item.price|floatformat:2}}</div>
+                        <div style="flex:1">
+                            <p class="quantity">{{order_item.quantity}}</p>
+                            <div class="quantity">
+                                <a href="{{order_item.item.get_add_to_cart_url}}">
+                                    <img class="chg-quantity" src="{% static 'arrowup.png' %}">
+                                </a>
+                                <a href="{{order_item.item.get_remove_single_from_cart_url}}">
+                                    <img class="chg-quantity" src="{% static 'arrowdown.png' %}">
+                                </a>
+    
+                            </div>
+                        </div>
+                        <div style="flex:1">${{order_item.get_final_price}}</div>
+                        <div style="flex:1">
+                            <a href="{{order_item.item.get_remove_from_cart_url}}">
+                                <img class="chg-quantity" src="{% static 'trash.png' %}">
+                            </a>
+                        </div>    
+                    </div>
+                    {% empty %}
+                    <div class="cart-row">
+                        <h4>No items in your cart</h4>
+                        <div style="flex:1"><a class="btn btn-outline-primary float-right" style="margin:auto;max-width:300px; position:relative; left: 1000px" href="{% url 'homepage' %}">&#x2190; Continue Shopping</a></div>
+                    </div>
+                    {% endfor %}
+
+                    {% if order.get_total %}
+                    <div class="cart-row" style="text-align: center;">
+                        <div style="flex:1"><strong>Order total</strong></div>
+                        <div style="flex:6"><strong> ${{order.get_total}}</strong></div>
+                    </div>
+                    <tr>
+                        <td colspan="5">
+                            <a class="btn btn-outline-primary float-right" style="margin:auto;max-width:300px; position:relative; left: 1000px" href="{% url 'homepage' %}">&#x2190; Continue Shopping</a>
+                            <a class="btn btn-outline-warning float-right ml-2" style="margin:auto;max-width:300px; position:relative; left:1000px" href="{% url 'checkout' %}">Proceed to Checkout</a>
+                        </td>
+                    </tr>
+                    {% endif %}
+    
+                
+            </div>
+        </div>
+        {% else %}
+        <tr>
+            <br>
+            <br>
+            <td><h4 style="text-align: center;">No items in your cart!</h4></td>
+        </tr>
+        <br>
+        <br>
+        <tr>
+            <td><a class="btn btn-outline-primary" style="margin:auto;max-width:300px; position:relative; left: 650px" href="{% url 'homepage' %}">&#x2190; Continue Shopping</a></td>
+        </tr>
+        {% endif %}
+    </section>
+</main>
+    
+
+{% endblock content %}
+
+
+

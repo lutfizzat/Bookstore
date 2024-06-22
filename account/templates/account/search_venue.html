@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <center>
+        
+        <h1>Search Result</h1>
+        <ul>
+            {% for item in items %}
+            <li>
+                <a href="{% url 'book_collection' %}">{{ item.title }}, {{ item.price }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+    </center>
+
+{% endblock content %}

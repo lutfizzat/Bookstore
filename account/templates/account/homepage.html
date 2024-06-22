@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">OUR QUIET WORLD</h1>
+    <p class="fs-5 text-muted">“Make it a rule never to give a child a book you would not read yourself.” - George Bernard Shaw</p>
+</div>
+
+
+
+<main>
+  <section class="text-center mb-4">
+    <div class="row wow fadeIn">
+      {% for object in object_list %}
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card" style="width: 20rem; height: 35rem;">
+          <div class="view overlay">
+            <a href="{% url 'booklist' object.slug %}">              
+              <img class="bd-placeholder-img card-img-top" id="book" src="{{object.imageURL}}"width="100%" height="225" aria-label="Placeholder: Thumbnail"></img>  
+            </a> 
+            <a>
+              <div class="mask rgbs-white-slight"></div>
+            </a>
+          </div>
+          <div class="card-body text-center">
+            <h6><strong>{{object.title}}</strong></h6>
+            <h7 class="grey-text"><strong>{{object.category}}</strong></h7>
+            <br>
+            <br>
+            <p class="card-text">{{object.description}}</p>
+            <div class="align-items-bottom">
+              <small class="text-muted">Bestseller</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </section>
+</main>
+
+
+{% endblock content %}

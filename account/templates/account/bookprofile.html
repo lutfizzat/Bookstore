@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {{ message }}
+    <div class="row" style="width: 50rem; margin:auto; position:relative; left:70px;">        
+        <div class="col-lg-4 card-body text-center">
+            <img class="thumbnail" src="{{object.image.url}}">
+            <div class="box-element product">
+                <h6><strong>{{object.title}}</strong></h6>
+                <h7 class="grey-text">{{object.category}}</h7>
+                <br>
+                <br>
+                <p class="lead font=weight-bold">{{object.description}}</p>
+                
+                <hr>
+                <div class="btn-group">
+                  <a href="{{object.get_add_to_cart_url}}" class="btn btn-primary btn-md my-0 p-2" type="submit">Add to Cart
+                      <i class="fas fa-shopping-cart ml-1"></i>
+                  </a>
+                  <a href="{{object.get_remove_from_cart_url}}" class="btn btn-danger btn-md my-0 p-2" type="submit">Remove from Cart
+                      <i class="fas fa-shopping-cart ml-1"></i>
+                  </a>
+                  <a href="{% url 'cart_summary' %}" class="btn btn-outline-secondary add-btn">Go to Cart</a>
+                  <h4 style="display: inline-block; float: right"><strong>${{object.price|floatformat:2}}</strong></h4>
+              </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

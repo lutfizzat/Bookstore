@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">OUR BOOK COLLECTION</h1>
+    
+</div>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            
+                <img class="bd-placeholder-img card-img-top" id="book1" src="{% static 'latestbook1.jpg' %}"width="100%" height="225" aria-label="Placeholder: Thumbnail"></img>
+            
+                
+                <div class="card-body">
+                <p class="card-text">From the New York Times bestselling author, Lauren Willig, comes this scandalous New York Gilded Age novel full of family secrets, affairs, and even murder.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a href="{% url 'homepage' %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                    </div>
+                    <small class="text-muted">Bestseller</small>
+                </div>
+                </div>
+          </div>
+        </div>
+
+        <div class="col">
+            <div class="card shadow-sm">
+              
+                  <img class="bd-placeholder-img card-img-top" id="book2" src="{% static 'latestbook2.jpg' %}"width="100%" height="225" aria-label="Placeholder: Thumbnail"></img>
+              
+                  
+                  <div class="card-body">
+                  <p class="card-text">Marie-Laure lives in Paris near the Museum of Natural History, where her father works. When she is twelve, the Nazis occupy Paris and father and daughter flee to the walled citadel of Saint-Malo, where Marie-Laure’s reclusive great uncle lives in a tall house by the sea. With them they carry what might be the museum’s most valuable and dangerous jewel.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="{% url 'homepage' %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                      </div>
+                      <small class="text-muted">Bestseller</small>
+                  </div>
+                  </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm">
+              
+                  <img class="bd-placeholder-img card-img-top" id="book3" src="{% static 'latestbook3.jpg' %}"width="100%" height="225" aria-label="Placeholder: Thumbnail"></img>
+              
+                  
+                  <div class="card-body">
+                  <p class="card-text">Valentine Michael Smith is a human being raised on Mars, newly returned to Earth. Among his people for the first time, he struggles to understand the social mores and prejudices of human nature that are so alien to him, while teaching them his own fundamental beliefs in grokking, watersharing, and love.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="{% url 'homepage' %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                      </div>
+                      <small class="text-muted">Bestseller</small>
+                  </div>
+                  </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm">
+              
+                  <img class="bd-placeholder-img card-img-top" id="book4" src="{% static 'latestbook4.jpeg' %}"width="100%" height="225" aria-label="Placeholder: Thumbnail"></img>
+              
+                  
+                  <div class="card-body">
+                  <p class="card-text">There is a door at the end of a silent corridor. And it’s haunting Harry Pottter’s dreams. Why else would he be waking in the middle of the night, screaming in terror?</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="{% url 'homepage' %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                      </div>
+                      <small class="text-muted">Bestseller</small>
+                  </div>
+                  </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm">
+              
+                  <img class="bd-placeholder-img card-img-top" id="book5" src="{% static 'latestbook5.jpg' %}"width="100%" height="225" aria-label="Placeholder: Thumbnail"></img>
+              
+                  
+                  <div class="card-body">
+                  <p class="card-text">Compassionate, dramatic, and deeply moving, "To Kill A Mockingbird" takes readers to the roots of human behavior - to innocence and experience, kindness and cruelty, love and hatred, humor and pathos.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="{% url 'homepage' %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                      </div>
+                      <small class="text-muted">Bestseller</small>
+                  </div>
+                  </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm">
+              
+                  <img class="bd-placeholder-img card-img-top" id="book6" src="{% static 'alexrider.jpg' %}"width="100%" height="225" aria-label="Placeholder: Thumbnail"></img>
+              
+                  
+                  <div class="card-body">
+                  <p class="card-text">In this adrenaline-fuelled adventure in the number one bestselling series, Alex Rider is sent by MI6 Special Operations, to infiltrate a new and sinister organisation known only as Nightshade. Alex is on his own, with the fate of thousands of people resting in his hands.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="{% url 'homepage' %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                      </div>
+                      <small class="text-muted">Bestseller</small>
+                  </div>
+                  </div>
+            </div>
+          </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+
+
+       
+{% endblock content %}

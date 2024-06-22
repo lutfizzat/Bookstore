@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
+    .container {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
+</style>
+
+<img class="center" id="profile-icon" src="{% static 'profile.png' %}">
+<h2 style="text-align: center;">Hello, {{request.user.username}}</h2>
+
+<div class="container">
+    <p>Name        :{{request.user.username}}</p>
+    <p>Email       :{{request.user.email}}</p>
+    <p>User Type   :{{request.user.usertype}}</p>
+    <p>Date joined :{{request.user.date_joined}}</p>
+    
+    
+   
+</div>
+<br>
+<br>
+<br>
+<br>
+
+<div class="d-flex justify-content-between align-items-center" style="margin:auto;max-width:300px; position:relative; left:200px">
+    <div class="btn-group">
+        
+        <a href="{% url 'password_change' %}" class="btn btn-primary btn-md my-0 p" type="submit">Reset Password</a>
+        <a href="{% url 'account_delete' %}" class="btn btn-danger btn-md my-0 p" type="submit">Delete my Account</a>
+</div>
+
+
+
+
+{% endblock content %}

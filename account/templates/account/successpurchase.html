@@ -1,0 +1,151 @@
+
+{% load static %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<style type="text/css">
+
+    
+    .body {
+
+    background-image: linear-gradient(180deg, #eee, #fff 100px, #fff);
+    
+    }
+
+    @media (min-width: 768px) {
+        html {
+            font-size: 16px;
+        }
+    }
+
+    .footer{
+        min-height: 100px;
+        background-color: #5DADE2;
+    }
+
+    .container {
+    max-width: 960px;
+    }
+
+    .pricing-header {
+    max-width: 700px;
+    }
+
+    .card-deck .card {
+        min-width: 220px;
+    }
+
+    .search-bar{
+        max-width: 500px;
+        width: 100%;
+        background-color: #8BCAC7;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+
+    form{
+        width: 100%;
+        
+    }
+
+    #cart-icon{
+        width:50px;
+        display: inline-block;
+        margin-left: 80px;
+        position: relative;
+        margin-top: 20px;
+    }
+
+    #cart-total{
+        display: block;
+        text-align: center;
+        color:#fff;
+        background-color: red;
+        width: 20px;
+        height: 25px;
+        border-radius: 50%;
+        font-size: 14px;
+        margin-left: 80px;
+        margin-top: 0px;
+    }
+
+
+
+
+
+</style>
+
+<!--HEADER-->
+<header>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+            <div class="d-flex flex-column pb-3">
+                <img style="margin:auto;max-width:300px; position:relative; left:20px" class="img-fluid mx-auto d-block" src="{% static 'logoo.png' %}" alt="our logo" width="72" height="72">
+            </div><!-- <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg> -->
+
+            <span class="fs-4" style="margin:auto;max-width:300px; position:relative; left:30px">
+                {% if request.user.is_authenticated %}
+                <p>Hello, {{request.user.username}}</p>
+                {% endif %}
+            </span>
+        </a>
+
+        <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+            <form class="d-flex" method="get" action="{% url 'search-venue' %}">{% csrf_token %}
+                <input style="margin:auto;max-width:300px; position:relative; left:450px" type="text" class="form-control" name="query" id="id_q" placeholder="Search Your Book" aria-label="Search">
+                <button style="margin:auto;max-width:300px; position:relative; left:460px"  class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+        </div>
+
+        
+
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            {% if request.user.is_authenticated %}
+                <a class="p-2 text-dark" href="{% url 'homepage' %}">Home</a>
+                <a class="p-2 text-dark" href="{% url 'logout' %}">Logout</a>
+                
+
+            {% else %}
+                <a class="p-2 text-dark" href="{% url 'homepage' %}">Home</a>
+                <a class="p-2 text-dark" href="{% url 'login' %}">Login</a>
+                <a class="btn btn-outline-primary" id="register-btn" href="{% url 'register' %}">Register</a>    
+            {% endif %}
+
+        </nav>
+
+        <div class="d-flex flex-column pb-3" style="position:relative; top:15px">
+            <a class="p-2" href="{% url 'payment_complete' %}">
+                <img  id="cart-icon" src="{% static 'cart.png' %}">
+            </a>
+            <p id="cart-total">0</p>
+
+        </div>
+        <div class="d-flex flex-column pb-3">
+            <a class="p-2" href="{% url 'profile' %}">
+                <img  id="profile-icon" src="{% static 'profilee.png' %}">
+            </a>
+        </div>
+    </div>
+</header>
+
+    
+<body>
+    </div>
+
+    <div class="p-3 pb-md-4 mx-auto text-center">
+        <img  id="purchased-icon" src="{% static 'purchased.png' %}">
+        <h3 class="display-4 fw-normal">THANK YOU FOR YOUR HAPPINESS PURCHASE !</h3>
+        <p class="fs-5 text-muted">“Make it a rule never to give a child a book you would not read yourself.” - George Bernard Shaw</p>
+    </div>
+</body>
+
+<footer>
+    <hr>
+    <div class="d-flex flex-row align-items-center footer">
+        <p class="m-auto">Bookstore Website | Group 6</p>
+    </div>
+</footer>
+
+{% endblock content %}

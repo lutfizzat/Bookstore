@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">OUR QUIET WORLD</h1>
+    <p class="fs-5 text-muted">“Make it a rule never to give a child a book you would not read yourself.” - George Bernard Shaw</p>
+</div>
+
+<div class="container">
+    <div class="d-flex flex-column"> <!--flox box-->
+        <h4>Registered users:</h4>
+        {% for account in accounts %}
+            <p>{{account}}</p>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+       
+{% endblock content %}
